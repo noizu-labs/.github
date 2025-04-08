@@ -33,7 +33,6 @@ Some of my Interesting Projects/Items
     - [PhpConform: Gherkin/Cucumber phpunit extension](#phpconform-gherkincucumber-phpunit-extension) - Gherkin/Cucumber extension for PHP unit testing. `PHP`
 - [Misc](#misc)
   - [Elixir Github API Client](#elixir-github-api-client) - Client for interacting with GitHub via Elixir. `Elixir`
-  - [Notion API Client](#elixir-notion-api-client) - Client for interacting with GitHub via Elixir. `Elixir`
 - [Tooling/Libs](#toolinglibs)
   - [Streaming Json Parser](#streaming-json-parser) - Parser for large JSON files in embedded C. `Embedded C`
   - [TrieGen](#triegen) - Efficient parsing tool for embedded C applications. `Embedded C`
