@@ -14,7 +14,7 @@ Some of my Interesting Projects/Items
   - [Notes/Ideas](#notesideas)
     - [AI Observations/Notes](#ai-observationsnotes) - Insights on AI system composition and dynamic model tuning. `Elixir`
   - [Tools/Apps](#toolsapps)
-    - [SMAH: Smart as Hell Command Line GPT](#noizuops-command-line-gpt) - GPT interface for Linux command line. `Python`
+    - [SMAH: Smart as Hell Command Line GPT](#smah-smart-as-hell-command-line-gpt) - GPT interface for Linux command line. `Python`
   - [Multi Agent Projects](#multi-agent-projects) - `Elixir`
     - [NoizuTeams](#noizuteams) - Framework for multi-agent virtual workgroups. `Elixir`
     - [Noizu Intellect](#noizu-intellect) - Advanced implementation of multi-agent systems. `Elixir`
