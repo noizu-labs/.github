@@ -14,7 +14,7 @@ Some of my Interesting Projects/Items
   - [Notes/Ideas](#notesideas)
     - [AI Observations/Notes](#ai-observationsnotes) - Insights on AI system composition and dynamic model tuning. `Elixir`
   - [Tools/Apps](#toolsapps)
-    - [NoizuOPS: Command Line GPT](#noizuops-command-line-gpt) - GPT interface for Linux command line. `Python`
+    - [SMAH: Smart as Hell Command Line GPT](#noizuops-command-line-gpt) - GPT interface for Linux command line. `Python`
   - [Multi Agent Projects](#multi-agent-projects) - `Elixir`
     - [NoizuTeams](#noizuteams) - Framework for multi-agent virtual workgroups. `Elixir`
     - [Noizu Intellect](#noizu-intellect) - Advanced implementation of multi-agent systems. `Elixir`
@@ -25,21 +25,16 @@ Some of my Interesting Projects/Items
 - [Scaffolding](#scaffolding)
   - [Elixir](#elixir)
     - [RuleEngine](#rule-engine) - DB/Config driven runtime rule engines. `Elixir`
-    - [Newest (wip)](#newest-wip)
-      - [Entities](#entities) - Scaffolding for domain objects and repositories. `Elixir`
-      - [Services](#services) - Service management with health monitoring. `Elixir`
-      - [Core](#core) - Core protocols for other libraries. `Elixir`
-    - [Legacy](#legacy)
-      - [ElixirCore](#elixircore) - Core functionality for Elixir applications. `Elixir`
-      - [Advanced Elixir Scaffolding](#advanced-elixir-scaffolding) - Advanced scaffolding for diverse persistence layers. `Elixir`
-      - [SimplePoolAdvance](#simplepooladvance) - Advanced process pool management. `Elixir`
+    - [Entities](#entities) - Scaffolding for domain objects and repositories. `Elixir`
+    - [Services](#services) - Service management with health monitoring. `Elixir`
+    - [Core](#core) - Core protocols for other libraries. `Elixir`
   - [PHP](#php)
     - [PHP Domain Objects](#php-domain-objects) - Domain-driven design objects for PHP. `PHP`
     - [PhpConform: Gherkin/Cucumber phpunit extension](#phpconform-gherkincucumber-phpunit-extension) - Gherkin/Cucumber extension for PHP unit testing. `PHP`
 - [Misc](#misc)
   - [Elixir Github API Client](#elixir-github-api-client) - Client for interacting with GitHub via Elixir. `Elixir`
+  - [Notion API Client](#elixir-notion-api-client) - Client for interacting with GitHub via Elixir. `Elixir`
 - [Tooling/Libs](#toolinglibs)
-  - [Assert Match](#assert-match) - Library for custom assertions in Elixir. `Elixir`
   - [Streaming Json Parser](#streaming-json-parser) - Parser for large JSON files in embedded C. `Embedded C`
   - [TrieGen](#triegen) - Efficient parsing tool for embedded C applications. `Embedded C`
   - [Liquibase Extension](#liquibase-extension) - Extensions for managing database changes with Liquibase. `Liquibase`
@@ -97,7 +92,6 @@ All public non async endpoints for Session and Models are exposed. Support for v
 ### OpenAI Client
 [noizu-labs-ml/elixir-openai](https://github.com/noizu-labs-ml/elixir-openai)
 @tags `Elixir`
-
 
 OpenAI Elixir Client. Far more robust (fine tuning, audio, etc.) then more general purpose GenAI one for working with OpenAI endpoints.
 ```elixir
@@ -247,14 +241,12 @@ and a draft of paper on support for realtime/runtime model fine tuning.
 
 ## Tools/Apps
 
-### NoizuOPS: Command Line GPT
+### SMAH: SMart as Hell Command Line GPT
 [noizu-labs-ml/noizu-ops](https://github.com/noizu-labs-ml/noizu-ops)
 @tags `Python`
 
-Old command line tool I wrote to bring GPT to the linux server.
-On account creation meta data about system, user experience level, etc. is created.
-The tool additionally uses multi-pass review/revision to improve quality of final output.
-along with some other prompting tricks/strategies.
+Command line tool I wrote to bring GPT to the linux server.
+On account creation meta data about system, user experience level, etc. Similiar to but predated microsoft and anthropic's solutions.
 ![image](https://github.com/noizu/about/assets/6298118/6329b213-caa7-4cd8-a80d-212efa05f6f0)
 
 ## Multi Agent Projects
@@ -296,98 +288,24 @@ Java port of my PHP Frag Key library.
 Protocols for DB/Config driven runtime Rule Engines. Fantastic candidate for hooking operations
 to GenAI and other models to drive runtime site/monitoring behavior.
 
-### Newest (wip)
-#### [Entities](https://github.com/noizu-labs-scaffolding/entities)
+### [Entities](https://github.com/noizu-labs-scaffolding/entities)
 @tags `Elixir`
 Scaffolding for managing Domain Objects and Repos.
 
-#### [Services](https://github.com/noizu-labs-scaffolding/services)
+### [Services](https://github.com/noizu-labs-scaffolding/services)
 @tags `Elixir`
 
 Scaffolding for managing large pools of long lived working processes with health monitoring, etc. baked in. 
 
-#### [Core](https://github.com/noizu-labs-scaffolding/core)
+### [Core](https://github.com/noizu-labs-scaffolding/core)
 @tags `Elixir`
 
 Base records,protocols that drive other libs.
-
-### Legacy
-#### [ElixirCore](https://github.com/noizu-labs/ElixirCore)
-@tags `Elixir`
-
-#### [Advanced Elixir Scaffolding](https://github.com/noizu-labs/advanced_elixir_scaffolding)
-@tags `Elixir`
-
-- Provides Domain Objects and Repos, supporting multiple persistence layers per module with fallback support. (e.g. check redis first, if not populated hit db, if not populated hit api).
-- Annotation driven/extended json formatting of objects. Specify what fields to include/omit for different json output formats.
-- Annotation driven security checks
-- Annotation driven pii inspection blocks (strip restricted fields from log output)
-- Quick switching between refs, database records and struct entities with the `ElixirCore EntityReferenceProtocol`.  e.g. `with {:ok, expanded_entity} <- ERP.entity_ok!({:ref, EntityType, {tuple,identifier}))` and `with {:ok, expanded_entity} <- ERP.entity_ok!("ref.type.{abga,boga}))`
-- and more.
-
-```elixir
-defmodule RootLevel.NestedLevel.Image do
-    use Noizu.DomainObject
-    @vsn 1.0
-    @sref "user"
-    # Default Mnesia Database  (RootLevelSchema.Database) and table.  RootLevelSchema.Repo.database() <> "NestedLevel.User.Table"
-    @persistence_layer :mnesia
-    # Default Ecto Database/Repo (RootLevelSchema.Repo) and table.  RootLevelSchema.Repo.database() <> "NestedLevel.User.Table"
-    @persistence_layer {:ecto, cascade?: true, fallback_load: true}
-    defmodule Entity do
-        @universal_identifier true
-        Noizu.DomainObject.noizu_entity do
-        @permissions {[:view, :index], :unrestricted}
-        identifier :integer
-        
-         public_field :owner
-        
-         @json {:*, :ignore}  # don't include this field by default in json response
-         @json {:admin_api, :include} # except for admin_api formatted calls. 
-         public_field :last_login
-        
-          # User (programmer) defined permission check - when attempting to access :bio check UserShare.has_permission? method to see if api caller has permission to view. 
-          @permissions :view, {:restricted, {UserShare, :has_permission?}}
-          user_field :bio
-        
-          # Only users with :account_moderator permission (granted by ACL - admin group membership} can edit/set   
-          # All callers can view the account_flag field. 
-          @permissions {:*, {:has_permission: :account_moderator}}, {:view, :unrestricted}
-          @restricted_field :account_flag 
-        
-          # Only users who are members of the :system_account or :super_admin group may access.
-          @permissions {:*,  [{:in_group: :system_account}, {:in_group: :super_admin}]}
-          @restricted_field :account_flag 
-        
-         # Low security (level 3) personally identifiable data. Can be included in most logs and exception messages.
-          @pii level_3
-          restricted_field :name, nil, Noizu.VersionedName.Type
-        
-         # High Security (level 0) PII. Only include in the most secure logs, strip from raised exceptions, etc.
-          @pii :level_0
-          restricted_field :social_security
-        end
-    end
-end
-```
-
-#### SimplePoolAdvance
-[noizu-labs/SimplePoolAdvanced](https://github.com/noizu-labs/SimplePoolAdvanced)
-@tags `Elixir`
-
-- Provide long lived process pools with advanced routing/fall over, default hooks and some other goodies. 
-- Node Tenancy for Process once assigned 
-- Syn (v2) or Registry based routing to avoid bottlenecks in GenServer or registered process routing. 
-- Service/Node/Cluster (v2) monitoring
-- Load Balancing of new workers (v2) assign to nodes lower workers/range ratios, and fewer errors per period. 
-
-https://github.com/noizu-labs/KitchenSinkAdvanced
 
 ## PHP
 ### PHP Domain Objects
 [noizu/domain-objects](https://github.com/noizu/domain-objects)
 @tags `PHP`
-
 
 ### PhpConform: Gherkin/Cucumber phpunit extension
 [noizu/php-conform](https://github.com/noizu/php-conform)
@@ -492,7 +410,7 @@ assert_make_and_model(assert_will_fail_variable_name, @my_datsun, "I was expecti
 [noizu-labs/StreamingJsonParser](https://github.com/noizu-labs/StreamingJsonParser)
 @tags `Embedded C`
 
-Written to deal with a embedded solution unable to parse/store inbound weather forecast data fast enough to avoid watch dog triggers, http lib overflows, and other issues. 
+Written to deal with an embedded solution unable to parse/store inbound weather forecast data fast enough to avoid watch dog triggers, http lib overflows, and other issues. 
 This embedded c streaming parser workers in conjunction with my trie_gen library to tokeninze input on the fly (Byte by Byte) allowing the library writter to watch for specific 
 keys, extract their value and store into their target data structure.
 
